@@ -1,32 +1,11 @@
 import React from 'react'
+import payment from '../assets/assets/images/payment.png'
 
 const Footer = () => {
   return (
     <>
     <div className="footer-category">
-      <div className="container">
-        <h2 className="footer-category-title">Brand directory</h2>
-        <div className="footer-category-box">
-          <h3 className="category-box-title">Fashion :</h3>
-          <a href="#" className="footer-category-link">T-shirt</a>
-          <a href="#" className="footer-category-link">Shirts</a>
-        </div>
-        <div className="footer-category-box">
-          <h3 className="category-box-title">footwear :</h3>
-          <a href="#" className="footer-category-link">sport</a>
-          <a href="#" className="footer-category-link">formal</a>
-          <div className="footer-category-box">
-            <h3 className="category-box-title">jewellery :</h3>
-            <a href="#" className="footer-category-link">Necklace</a>
-            <a href="#" className="footer-category-link">Earrings</a>
-          </div>
-          <div className="footer-category-box">
-            <h3 className="category-box-title">cosmetics :</h3>
-            <a href="#" className="footer-category-link">Shampoo</a>
-            <a href="#" className="footer-category-link">Bodywash</a>
-          </div>
-        </div>
-      </div>
+
       <div className="footer-nav">
         <div className="container">
           <ul className="footer-nav-list">
@@ -168,7 +147,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <div className="container">
-          <img src="./images/payment.png" alt="payment method" className="payment-img" />
+          <img src={payment} alt="payment method" className="payment-img" />
           <p className="copyright">
             Copyright © <a href="#">Anon</a> all rights reserved.
           </p>

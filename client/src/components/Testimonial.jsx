@@ -1,4 +1,8 @@
 import React from 'react'
+import testimonial from '../assets/assets/images/testimonial-1.jpg'
+import quote from '../assets/assets/images/icons/quotes.svg'
+import ctaBanner from '../assets/assets/images/cta-banner.jpg'
+import {IoMdArrowDropleft, IoMdBoat, IoMdCall, IoMdCard, IoMdRocket} from 'react-icons/io'
 
 const Testimonial = () => {
   return (
@@ -11,10 +15,10 @@ const Testimonial = () => {
       <div className="testimonial">
         <h2 className="title">testimonial</h2>
         <div className="testimonial-card">
-          <img src="./images/testimonial-1.jpg" alt="alan doe" className="testimonial-banner" width={80} height={80} />
+          <img src={testimonial} alt="alan doe" className="testimonial-banner" width={80} height={80} />
           <p className="testimonial-name">Alan Doe</p>
           <p className="testimonial-title">CEO &amp; Founder Invision</p>
-          <img src="./images/icons/quotes.svg" alt="quotation" className="quotation-img" width={26} />
+          <img src={quote} alt="quotation" className="quotation-img" width={26} />
           <p className="testimonial-desc">
             Lorem ipsum dolor sit amet consectetur Lorem ipsum
             dolor dolor sit amet.
@@ -25,7 +29,7 @@ const Testimonial = () => {
       - CTA
     */}
       <div className="cta-container">
-        <img src="./images/cta-banner.jpg" alt="summer collection" className="cta-banner" />
+        <img src={ctaBanner} alt="summer collection" className="cta-banner" />
         <a href="#" className="cta-content">
           <p className="discount">25% Discount</p>
           <h2 className="cta-title">Summer collection</h2>
@@ -41,7 +45,7 @@ const Testimonial = () => {
         <div className="service-container">
           <a href="#" className="service-item">
             <div className="service-icon">
-              <ion-icon name="boat-outline" />
+              <IoMdBoat className='ion-icon' />
             </div>
             <div className="service-content">
               <h3 className="service-title">Worldwide Delivery</h3>
@@ -50,7 +54,7 @@ const Testimonial = () => {
           </a>
           <a href="#" className="service-item">
             <div className="service-icon">
-              <ion-icon name="rocket-outline" />
+              <IoMdRocket className='ion-icon'/>
             </div>
             <div className="service-content">
               <h3 className="service-title">Next Day delivery</h3>
@@ -59,7 +63,7 @@ const Testimonial = () => {
           </a>
           <a href="#" className="service-item">
             <div className="service-icon">
-              <ion-icon name="call-outline" />
+              <IoMdCall  className='ion-icon'/>
             </div>
             <div className="service-content">
               <h3 className="service-title">Best Online Support</h3>
@@ -68,7 +72,7 @@ const Testimonial = () => {
           </a>
           <a href="#" className="service-item">
             <div className="service-icon">
-              <ion-icon name="arrow-undo-outline" />
+              <IoMdArrowDropleft className='ion-icon' />
             </div>
             <div className="service-content">
               <h3 className="service-title">Return Policy</h3>
@@ -77,7 +81,7 @@ const Testimonial = () => {
           </a>
           <a href="#" className="service-item">
             <div className="service-icon">
-              <ion-icon name="ticket-outline" />
+              <IoMdCard className='ion-icon' />
             </div>
             <div className="service-content">
               <h3 className="service-title">30% money back</h3>

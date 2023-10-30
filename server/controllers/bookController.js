@@ -10,18 +10,22 @@ export const uploadBook = catchAsyncError(async (req, res, next) => {
   try {
     const data = req.body;
 
-    const thumbnail = data.thumbnail;
+    console.log('enterrr',req.body);
 
-    if (thumbnail) {
-      const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
-        folder: "books",
-      });
+    // console.log(data.thumbnail);
 
-      data.thumbnail = {
-        public_id: myCloud.public_id,
-        url: myCloud.secure_url,
-      };
-    }
+    // const thumbnail = data.thumbnail;
+
+    // if (thumbnail) {
+    //   const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
+    //     folder: "books",
+    //   });
+
+    //   data.thumbnail = {
+    //     public_id: myCloud.public_id,
+    //     url: myCloud.secure_url,
+    //   };
+    // }
 
     createBook(data, res, next);
   } catch (error) {
