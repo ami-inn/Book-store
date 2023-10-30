@@ -14,14 +14,17 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    primaryImage:{
-        type: String,
-        required: true,
+    thumbnail:{
+        public_id:{
+            // required:true,
+            type:String
+        },
+        url:{
+            // required:true,
+            type:String
+        }
     },
-    secondaryImage:{
-        type: String,
-        required: true,
-    },
+
     rating:{
         type:Number,
         required: true,
@@ -30,6 +33,6 @@ const bookSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Book = mongoose.model("Book", bookSchema);
+const BookModel = mongoose.model("Book", bookSchema);
 
-export default Book;
+export default BookModel;
