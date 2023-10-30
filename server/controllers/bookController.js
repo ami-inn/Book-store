@@ -64,3 +64,53 @@ export const editBook = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+export const getSingleBook = catchAsyncError(async(req,res,next)=>{
+    try{
+
+        const book = await BookModel.findById(req.params.id)
+
+
+        res.status(200).json({
+            success:true,
+            book
+        })
+        
+    }
+
+    catch(error){
+        return next(new ErrorHandler(error.message,400))
+    }
+})
+
+export const getAllBooks = catchAsyncError(async(req,res,next)=>{
+    try {
+
+        const books = await BookModel.find()
+
+        res.status(200).json({success:true,books})
+        
+    } catch (error) {
+        return next(new ErrorHandler(error.message,400))
+    }
+})
+
+export const deleteBook = catchAsyncError(async(req,res,next)=>{
+    try {
+        
+        const {id} = req.params
+
+        const book = await BookModel.findById(id)
+
+        if(!book){
+            return next(new ErrorHandler("course not found",400))
+        }
+
+        await BookModel.deleteBook({id})
+
+        res.status(200).json({success:true,message:"book deleted successfully"})
+        
+    } catch (error) {
+        return next(new ErrorHandler(error.message,400))
+    }
+})
