@@ -14,6 +14,18 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    primaryImage:{
+        type: String,
+        required: true,
+    },
+    secondaryImage:{
+        type: String,
+        required: true,
+    },
+    rating:{
+        type:Number,
+        required: true,
+    }
   },
   { timestamps: true }
 );

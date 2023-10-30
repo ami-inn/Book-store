@@ -5,6 +5,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { ErrorMiddleware } from './middleware/error.js'
 import dotenv from 'dotenv';
+import bookRouter from './routes/book.route.js'
 dotenv.config();
 
 
@@ -18,6 +19,8 @@ app.use(
         credentials: true,
     })
 )
+
+app.use('api/v1',bookRouter)
 
 app.get("/test", (req, res, next) => {
     res.status(200).json({
