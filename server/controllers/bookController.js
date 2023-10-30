@@ -1,12 +1,12 @@
-import { catchAsyncError } from "../utils/catchAsyncError";
-import BookModel from "../model/book.model";
+import { catchAsyncError } from "../utils/catchAsyncError.js";
+import BookModel from "../model/book.model.js";
 import mongoose from "mongoose";
 import path from "path";
-import ErrorHandler from "../utils/ErrorHandler";
+import ErrorHandler from "../utils/ErrorHandler.js";
 import cloudinary from "cloudinary";
-import { createBook } from "../services/book.service";
+import { createBook } from "../services/book.service.js";
 
-export const uploadCourse = catchAsyncError(async (req, res, next) => {
+export const uploadBook = catchAsyncError(async (req, res, next) => {
   try {
     const data = req.body;
 
@@ -106,7 +106,7 @@ export const deleteBook = catchAsyncError(async(req,res,next)=>{
             return next(new ErrorHandler("course not found",400))
         }
 
-        await BookModel.deleteBook({id})
+        await BookModel.deleteOne({id})
 
         res.status(200).json({success:true,message:"book deleted successfully"})
         

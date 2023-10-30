@@ -1,6 +1,7 @@
 import { app } from "./app.js";
 import dotenv from 'dotenv';
 import connectDB from './utils/db.js'
+import cloudinary from 'cloudinary'
 dotenv.config();
 
 cloudinary.config({

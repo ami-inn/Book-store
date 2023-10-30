@@ -20,7 +20,7 @@ app.use(
     })
 )
 
-app.use('api/v1',bookRouter)
+app.use('/api/v1',bookRouter)
 
 app.get("/test", (req, res, next) => {
     res.status(200).json({

@@ -1,5 +1,5 @@
-import BookModel from "../model/book.model";
-import { catchAsyncError } from "../utils/catchAsyncError";
+import BookModel from "../model/book.model.js";
+import { catchAsyncError } from "../utils/catchAsyncError.js";
 
 
 
