@@ -4,12 +4,19 @@ import book1 from '../assets/assets/images/products/book-1.jpg'
 import { IoMdCreate, IoMdEye, IoMdHeart, IoMdStar } from 'react-icons/io'
 import AddBook from './AddBook';
 import axios from 'axios';
+import EditBook from './EditBook';
+import { editBook } from '../../../server/controllers/bookController';
 
 const Product = () => {
 
   const [open, setOpen] = React.useState(false);
+  const [editOpen,setEditOpen] = React.useState(false)
 
   const [books,setbooks] = React.useState(null)
+  
+  const [id,setId]=React.useState('')
+
+  console.log(id);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,11 +24,20 @@ const Product = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setEditOpen(false)
+    setId("")
   };
 
   React.useEffect(()=>{
     fetchBooks()
-  },[open])
+  },[open,id])
+
+  const handleEditBook = (id)=>{
+    console.log(id,'jk');
+    setId(id)
+    setEditOpen(true)
+
+  }
 
   const fetchBooks = async ()=>{
     try{
@@ -68,7 +84,7 @@ const Product = () => {
                     <IoMdEye className='ion-icon' />
                   </button>
                   <button className="btn-action">
-                    <IoMdCreate className='ion-icon'/>
+                    <IoMdCreate onClick={()=>handleEditBook(item._id)} className='ion-icon'/>
                   </button>
                 </div>
               </div>
@@ -104,7 +120,7 @@ const Product = () => {
 </div>
 
 <AddBook open={open} handleClose={handleClose}/>
-
+<EditBook open={editOpen} handleClose={handleClose} id={id}  />
 </>
   )
 }

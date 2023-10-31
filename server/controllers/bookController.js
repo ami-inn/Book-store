@@ -3,7 +3,6 @@ import BookModel from "../model/book.model.js";
 import mongoose from "mongoose";
 import path from "path";
 import ErrorHandler from "../utils/ErrorHandler.js";
-import cloudinary from "cloudinary";
 import { createBook } from "../services/book.service.js";
 
 export const uploadBook = catchAsyncError(async (req, res, next) => {
@@ -37,20 +36,20 @@ export const editBook = catchAsyncError(async (req, res, next) => {
   try {
     const data = req.body;
 
-    const thumbnail = data.thumbnail;
+    // const thumbnail = data.thumbnail;
 
-    if (thumbnail) {
-      await cloudinary.v2.uploader.destroy(thumbnail.public_id);
+    // if (thumbnail) {
+    //   await cloudinary.v2.uploader.destroy(thumbnail.public_id);
 
-      const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
-        folder: "books",
-      });
+    //   const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
+    //     folder: "books",
+    //   });
 
-      data.thumbnail = {
-        public_id: myCloud.public_id,
-        url: myCloud.secure_url,
-      };
-    }
+    //   data.thumbnail = {
+    //     public_id: myCloud.public_id,
+    //     url: myCloud.secure_url,
+    //   };
+    // }
       const bookId = req.params.id;
 
       const book = await BookModel.findByIdAndUpdate(
