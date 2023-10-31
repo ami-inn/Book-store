@@ -8,35 +8,50 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
 
-const AddBook = ({ open, handleClose,setRefresh }) => {
-  console.log(setRefresh);
+const AddBook = ({ open, handleClose }) => {
   const [formData, setFormData] = useState({
     title: '',
     author: '',
-    rating: Number,
-    price: Number,
-    summary:'',
-    thumbnail: null, // To store the selected image file
+    rating: 0,
+    price: 0,
+    summary: '',
+    thumbnail: [],
   });
 
-  console.log(formData);
+
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type } = e.target;
+    const newValue = type === 'number' ? Number(value) : value;
+    setFormData({ ...formData, [name]: newValue });
   };
 
+  const handleImage = (e) =>{
+    const file = e.target.files[0];
+    setFileToBase(file);
+    console.log(file);
+}
+
+const setFileToBase = (file) =>{
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () =>{
+      setFormData({ ...formData, thumbnail: reader.result });
+    }
+
+}
+
+console.log(formData);
 
 
   const handleSubmit = () => {
-    // Send the form data to the backend using Axios
-    
+
+
+
     axios
       .post('/api/v1/add-book', formData)
       .then((response) => {
         console.log('Form data sent:', response.data);
-        alert('success')
-        // setRefresh==true?setRefresh(false):setRefresh(true);
         handleClose();
       })
       .catch((error) => {
@@ -87,10 +102,14 @@ const AddBook = ({ open, handleClose,setRefresh }) => {
           name="rating"
           value={formData.rating}
           onChange={handleInputChange}
-          type='number'
+          type="number"
           fullWidth
           variant="standard"
+          inputProps={{ max: 5, min: 0 }}
         />
+
+<input onChange={handleImage}  type="file" id="formupload" name="image" className="form-control"  />
+
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>

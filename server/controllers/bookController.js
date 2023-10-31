@@ -4,33 +4,46 @@ import mongoose from "mongoose";
 import path from "path";
 import ErrorHandler from "../utils/ErrorHandler.js";
 import { createBook } from "../services/book.service.js";
+import cloudinary from "../utils/cloudinary.js";
+
 
 export const uploadBook = catchAsyncError(async (req, res, next) => {
   try {
     const data = req.body;
 
-    console.log('enterrr',req.body);
+    const thumbnail = data.thumbnail
 
-    // console.log(data.thumbnail);
+    if(thumbnail){
 
-    // const thumbnail = data.thumbnail;
+ 
 
-    // if (thumbnail) {
-    //   const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
-    //     folder: "books",
-    //   });
+    try {
+      const upload = await cloudinary.uploader.upload(thumbnail, {
+        folder: "products",
+         width: 800,
+         height: 700,
+            crop: "scale"
+      });
+      
+      console.log(upload, 'upload success');
 
-    //   data.thumbnail = {
-    //     public_id: myCloud.public_id,
-    //     url: myCloud.secure_url,
-    //   };
-    // }
+      data.thumbnail = {
+        public_id:upload.public_id,
+        url :upload.secure_url
+    }
+
+    } catch (error) {
+      console.log('eeeeeeeeeeeeeeeeeeeeee');
+      console.error('Upload error:', error);
+    }
+  }
 
     createBook(data, res, next);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
 
 export const editBook = catchAsyncError(async (req, res, next) => {
   try {
@@ -100,7 +113,7 @@ export const getAllBooks = catchAsyncError(async(req,res,next)=>{
 
 export const deleteBook = catchAsyncError(async(req,res,next)=>{
     try {
-        
+        console.log('enter hereee');
         const {id} = req.params
 
         const book = await BookModel.findById(id)
@@ -108,8 +121,11 @@ export const deleteBook = catchAsyncError(async(req,res,next)=>{
         if(!book){
             return next(new ErrorHandler("course not found",400))
         }
+        console.log(book);
 
-        await BookModel.deleteOne({id})
+        const books =await BookModel.deleteOne({_id:id})
+
+        console.log('books',books);
 
         res.status(200).json({success:true,message:"book deleted successfully"})
         

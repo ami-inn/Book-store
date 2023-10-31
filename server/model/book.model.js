@@ -14,16 +14,17 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    thumbnail:{
-        public_id:{
-            // required:true,
-            type:String
-        },
-        url:{
-            // required:true,
-            type:String
-        }
-    },
+    thumbnail: {
+      public_id: {
+          type: String,
+        
+      },
+      url: {
+          type: String,
+          
+      }
+  
+  },
 
     rating:{
         type:Number,
